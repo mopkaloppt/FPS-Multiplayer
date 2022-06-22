@@ -106,7 +106,7 @@ public class FPSController : MonoBehaviour
             // Transform the direction from local coord to Unity's world coord
             moveDirection = transform.TransformDirection(moveDirection) * speed;
 
-            // TODO Call Jump
+            PlayerJump();
         }
         // Character Controller does not apply gravity like Rigidbody so we need to apply it on our own
         moveDirection.y -= gravity * Time.deltaTime;
@@ -182,8 +182,27 @@ public class FPSController : MonoBehaviour
             Time.deltaTime * 11f);
 
             yield return null;
-        }
-        
+        }       
+    }
 
+    void PlayerJump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (is_Crouching)
+            {
+                if (CanGetUp())
+                {
+                    is_Crouching = false;
+                    
+                    StopCoroutine(MoveCameraCrouch());
+                    StartCoroutine(MoveCameraCrouch());
+                }
+            }
+            else
+            {
+                moveDirection.y = jumpSpeed;
+            }
+        }
     }
 }

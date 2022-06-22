@@ -236,6 +236,9 @@ MonoBehaviour:
   crouchSpeed: 4
   jumpSpeed: 8
   gravity: 20
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!114 &763412876
 MonoBehaviour:
   m_ObjectHideFlags: 0
